@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-webapp",
+  "version": "1.0.0",
+  "description": "A simple nodejs application",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Felix Olu gfakx@outlook.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mocha": "^10.2.0"
+  }
+}
