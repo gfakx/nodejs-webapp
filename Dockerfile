@@ -10,5 +10,5 @@ RUN npm install
 COPY . .
 # Expose Port
 EXPOSE 3000
-# Entry for CMD .
+# Entry for CMD
 CMD [ "node", "server.js" ]
