@@ -1,0 +1,59 @@
+# Deployment Configuration
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodesy-deployment
+  labels:
+    app: nodesy-app
+spec:
+  replicas: 3 # Initial number of replicas
+  selector:
+    matchLabels:
+      app: nodesy-app
+  template:
+    metadata:
+      labels:
+        app: nodesy-app
+    spec:
+      containers:
+        - name: nodesy-container
+          image: <name>.azurecr.io/nodejs-webapp:v1.0  # change to actual azure image name 
+          ports:
+            - containerPort: 3000
+          resources: # Resource requests and limits for autoscaling
+            requests:
+              cpu: "250m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+
+# LoadBalancer Service Configuration
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodesy-service
+spec:
+  selector:
+    app: nodesy-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer # Exposes the application with a LoadBalancer
+
+# Horizontal Pod Autoscaler (HPA) Configuration
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nodesy-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodesy-deployment
+  minReplicas: 3 # Minimum number of replicas
+  maxReplicas: 10 # Maximum number of replicas
+  targetCPUUtilizationPercentage: 80 # CPU utilization target for scaling
