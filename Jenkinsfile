@@ -5,8 +5,8 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
      }
     environment {
-    ACR_NAME = "gfakxacr"
-    registyUrl = "gfakxacr.azurecr.io"
+    ACR_NAME = "<name>"
+    registyUrl = "<name>.azurecr.io"
     IMAGE_NAME = "nodejs-webapp"
     IMAGE_TAG = "v1.0.0"
     registryCredential  = "gf-acr"
