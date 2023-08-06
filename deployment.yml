@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nodesy-container
-          image: gfakxacr.azurecr.io/nodejs-webapp:v1.0
+          image: gfakxacr.azurecr.io/nodejs-webapp:v1.0.0
           ports:
             - containerPort: 3000
 ---
