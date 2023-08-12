@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nodesy-container
-          image: gfakx/gfakx-docker:v1.0.0
+          image: 546798745265.dkr.ecr.us-east-1.amazonaws.com/netflix-app:latest
           ports:
             - containerPort: 3000
 ---
